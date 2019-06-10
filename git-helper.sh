@@ -4,10 +4,36 @@
 # version: 1.0.0
 # data: 2018.5.1
 
+# 检测是否安装了git或者正确配置git到path
+clear
 git --version &> /dev/null
 if [ $? -ne 0 ]; then
-	echo "没有检测到git命令,请首先安装并配置好git "
+	echo -e -n "\n\n\033[01;36m没有检测到git命令,请首先安装并配置好git.\n \033[0m "
 	exit 1
+fi
+
+# 检测是否配置了user.name 和 user.email
+git config --global --list | grep user.name
+if [[ -z $(git config --global --list | grep user.name) ]] && [[ -z $(git config --local --list | grep user.name) ]]; then
+	
+	echo -e -n "\n\n\033[01;36m检测到您还没有配置用户信息, 是否要配置用户信息[Y/N]:.\n\033[0m"
+	read -n1 config_choose
+	echo -e "\n"
+	if [[ $config_choose == 'y' ]] || [[ $config_choose == 'Y' ]]; then
+		echo -e -n "\033[01;36m请输入要是用的name：\n \033[0m "
+		read -p "name: " user_name
+		git config --global user.name "$user_name"
+		echo -e "\n"
+		echo -e -n "\033[01;36m请输入要是用的email：\n \033[0m "
+		read -p "email: " user_email
+		git config --global user.email "$user_email"
+		clear
+		echo -e -n "\033[01;36m恭喜，用户信息设置成功！\n \033[0m "
+	else
+		echo -e -n "\033[01;36m取消成功.\n\033[0m "
+		exit 129
+	fi
+
 fi
 
 git status
