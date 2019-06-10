@@ -13,7 +13,6 @@ if [ $? -ne 0 ]; then
 fi
 
 # 检测是否配置了user.name 和 user.email
-git config --global --list | grep user.name
 if [[ -z $(git config --global --list | grep user.name) ]] && [[ -z $(git config --local --list | grep user.name) ]]; then
 	
 	echo -e -n "\n\n\033[01;36m检测到您还没有配置用户信息, 是否要配置用户信息[Y/N]:\033[0m"
@@ -32,7 +31,7 @@ if [[ -z $(git config --global --list | grep user.name) ]] && [[ -z $(git config
 		echo -e -n "\033[01;36m取消成功.\n\033[0m "
 		exit 129
 	fi
-
+	
 fi
 
 git status
