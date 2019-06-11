@@ -5,7 +5,15 @@
 # data: 2018.5.1
 
 # 首先避免自己被添加到git管理中
-echo "${0}" >> .gitignore
+sfile=$(ls | grep .sh)
+if [ -f .gitignore ]; then
+	if [ -z $(grep ${sfile} .gitignore) ]; then
+		echo "${sfile}" >> .gitignore
+	fi
+else
+	echo "##ignore this file##" >> .gitignore
+	echo "${sfile}" >> .gitignore
+fi
 
 # 检测是否安装了git或者正确配置git到path
 clear
