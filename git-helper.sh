@@ -4,6 +4,9 @@
 # version: 1.0.0
 # data: 2018.5.1
 
+# 首先避免自己被添加到git管理中
+echo "${0}" >> .gitignore
+
 # 检测是否安装了git或者正确配置git到path
 clear
 git --version &> /dev/null
