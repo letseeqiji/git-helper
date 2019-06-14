@@ -1,7 +1,7 @@
 #!/bin/bash
 # 简单易用高效的git命令行助手
 # Author: letseeqiji
-# version: 1.0.0
+# version: 1.0.1
 # data: 2018.5.1
 
 # 首先避免自己被添加到git管理中
