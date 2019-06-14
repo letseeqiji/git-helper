@@ -53,18 +53,22 @@ do
 	echo -e "\n"
 	case $choose in
 	0)
-		git status;;
+		git status
+		;;
 	1)
 		git add -A
-		git status;;
+		git status
+		;;
 	2)
 		echo -e -n "\033[01;36m请输入备注: \033[0m "
 		read commit
 		commitDate="[20"$(date +%y-%m-%d])
 		commit=$commitDate$commit
-		git commit -m "$commit";;
+		git commit -m "$commit"
+		;;
 	3)
-		git diff HEAD -- *;;
+		git diff HEAD -- *
+		;;
 	4)
 		git fetch origin master:origin_master
 		git checkout origin_master
@@ -78,14 +82,16 @@ do
 		else
 			echo -e -n "\033[01;36m取消成功.\n \033[0m "
 		fi
-		git branch -D origin_master;;
+		git branch -D origin_master
+		;;
 
 	5)
 		echo -e -n "\033[01;36m仅展示两周内日志. \033[0m "
 		git log --since=2.weeks --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit;;
 	6)
 	        git push origin master
-			git status;;
+			git status
+			;;
 	7)
 		echo -e "\033[01;36m输入配置用户信息的命令并回车, 例如[git config --global user.name 'XXX']. \033[0m "
 		while read -p ">> " gitConfig
@@ -96,19 +102,22 @@ do
 			else
 				break
 			fi
-		done;;
+		done
+		;;
 	8)
 		git log --since=2.weeks --color --graph --pretty=oneline
 		echo -e -n "\033[01;36m请输入要回滚到的id: \033[0m "
 		read reset_id
 		git reset --hard $reset_id
-		git status;;
+		git status
+		;;
 	
 	9)
 		echo -e -n "\033[01;36m请输入要回删除的文件名: \033[0m "
 		read rm_file
 		git rm $rm_file
-		git status;;
+		git status
+		;;
 	a | A)
 		echo -e -n "\033[01;36m请输入要修改的文件名: \033[0m "
 		read sr_file
@@ -117,7 +126,8 @@ do
 		git mv $sr_file $mv_file
 		git status;;
 	e | E)
-		exit 0;;
+		exit 0
+		;;
 	h | H)
 		echo "	0: 添加所有的文件到缓存区, 对应命令: git add -A. "
 		echo "	1: 确认更改，对应命令：git commit -m 备注. "
