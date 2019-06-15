@@ -113,6 +113,8 @@ do
 		;;
 	
 	9)
+		clear
+		ls
 		echo -e -n "\033[01;36m请输入要回删除的文件名: \033[0m "
 		read rm_file
 		git rm $rm_file
