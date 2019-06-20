@@ -45,6 +45,7 @@ if [[ -z $(git config --global --list | grep user.name) ]] && [[ -z $(git config
 	
 fi
 
+# 还可以添加自动运行脚本和加入命令行自动运行  以及 优化一些步骤 比如推送之前应该首先 git pull  以及自动处理冲突等
 git status
 options="[ 0-查看状态 | 1-添加修改 | 2-提交修改 | 3-比较文件 | 4-拉取文件 | 5-查看日志 | 6-推送修改 ]\n[ 7-运行命令 | 8-回滚操作 | 9-删除文件 | A-文件改名 | E-退出命令 | H-帮助文档 ]"
 while echo -e -n "\n\n\033[01;36m选择操作，输入对应的数字即可.\n$options: \033[0m "
