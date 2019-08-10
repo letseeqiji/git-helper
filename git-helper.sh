@@ -47,7 +47,7 @@ fi
 
 # 还可以添加自动运行脚本和加入命令行自动运行  以及 优化一些步骤 比如推送之前应该首先 git pull  以及自动处理冲突等 处理冲突的设计才需要完善
 git status
-options="[ 0-查看状态 | 1-添加修改 | 2-提交修改 | 3-比较文件 | 4-拉取文件 | 5-查看日志 | 6-推送修改 ]\n[ 7-运行命令 | 8-回滚操作 | 9-删除文件 | A-文件改名 | E-退出命令 | H-帮助文档 ]"
+options="[ 0-查看状态 | 1-添加修改 | 2-提交修改 | 3-比较文件 | 4-拉取文件 | 5-查看日志 | 6-推送修改 ]\n[ 7-运行命令 | 8-回滚操作 | 9-删除文件 | A-文件改名 | B-切换分支 | C-合并分支 ]\n[ E-退出命令 | H-帮助文档 ]"
 while echo -e -n "\n\n\033[01;36m选择操作，输入对应的数字即可.\n$options: \033[0m "
 	read -p "" choose
 do
@@ -127,6 +127,16 @@ do
 		echo -e -n "\033[01;36m请输入要修改后的文件名: \033[0m "
 		read mv_file
 		git mv $sr_file $mv_file
+		git status;;
+	b | B)
+		echo -e -n "\033[01;36m目前的分支列表: \033[0m "
+		echo
+		git branch -a
+		echo -e -n "\033[01;36m请输入要切换到的分支[请确当前分支所有更改已提交,输入0取消切换]: \033[0m "
+		read to_branch
+		if [[ $to_branch != 0 ]]; then
+			git checkout $to_branch
+		fi
 		git status;;
 	e | E)
 		exit 0
